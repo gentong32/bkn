@@ -1,0 +1,79 @@
+#rangkuman {
+  display: none;
+}
+
+.rangkuman_table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.rangkuman_table table thead {
+  background-color: #d5edd4;
+}
+
+.rangkuman_table table thead th {
+  text-align: center;
+  font-weight: bold;
+  border: 0.5px solid #abc9aa;
+}
+
+.rangkuman_table table tbody td {
+  text-align: right;
+}
+
+.rangkuman_table table tfoot th {
+  text-align: right;
+}
+
+table {
+  width: 1300px !important;
+}
+
+.dataTables_length {
+  margin-bottom: 10px;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+a {
+  text-decoration: none;
+  color: #3dad38;
+}
+
+.breadcrumb {
+  font-size: 16px;
+  font-style: italic;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+#rangkuman {
+  margin-top: 20px;
+}
+
+table.dataTable tbody th,
+table.dataTable tbody td {
+  padding: 4px 5px;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+  background-color: #f2f2f2 !important;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+  background-color: #ffffff !important;
+}
+
+table.dataTable tbody tr:hover {
+  background-color: #d1e7dd !important;
+}
