@@ -327,7 +327,7 @@ DASBOR
                 </svg>
             </div>
             <div class="infokohort">
-                <b>Parameter 1</b><br><br>
+                <b>Parameter 2</b><br><br>
                 Data yang dipadankan bersumber dari DAPODIK<br><br>
                 A. Data Kependudukan<br>
                 <span style="margin-left:18px">Validasi NIK (Acuan Dukcapil Pusat)</span>
@@ -344,12 +344,12 @@ DASBOR
                     <span style="margin-left:18px">- Validasi NIP (Acuan BKN)</span>
                     <ol style="margin-top:0; margin-left:2px;margin-bottom:0px">
                         <li>NIP <i>(Padan 100%)</i></li>
-                        <li>Nama <i>(Padan Min. 95%)</i></li>
+                        <li>Nama <span style="color: red;"><i>(Min. 70%)</i></span></li>
                         <li>Jenis Kelamin <i>(Padan 100%)</i></li>
                         <li>Tanggal Lahir <i>(Padan 100%)</i></li>
-                        <li>Tempat Lahir <i>(Padan Min. 95%)</i></li>
+                        <li>Tempat Lahir <span style="color: red;"><i>(Padan Min. 50%)</i></span></li>
                     </ol>
-                    <span style="margin-left:18px;">- Validasi NIK (Acuan Dukcapil Pusat) <i>(Padan 100%)</i></span>
+                    <span style="margin-left:18px;">- Validasi NIK (Acuan Dukcapil Pusat) <span style="color: red;"><i>(---%)</i></span></span>
                 </div>
                 <div style="margin-top:20px">C. Validasi NUPTK (Acuan Data Induk Pendidikan)</div>
                 <div style="margin-top:16px">D. Validasi Satminkal (Acuan BKN)</div>

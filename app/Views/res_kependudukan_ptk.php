@@ -3,7 +3,7 @@
 <?= $this->section('style') ?>
 <link rel="stylesheet" href="<?= base_url() ?>public/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="<?= base_url() ?>public/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="<?= base_url() ?>public/css/tabelverval.css">
+<link rel="stylesheet" href="<?= base_url() ?>public/css/tabelverval.css?v1.2">
 <style>
     table.dataTable>tfoot>tr>th,
     table.dataTable>tfoot>tr>td {
@@ -40,7 +40,7 @@ Ver-Val Data Master
     <div class="card">
         <h2>Residu Kependudukan (NIK)</h2>
 
-        <div class="breadcrumb">
+        <div id="breadcrumb">
             <?= $breadcrumb ?>
         </div>
 
@@ -73,7 +73,8 @@ Ver-Val Data Master
                             <td style="text-align: left !important;"><?= maskName($row['nama']) ?>
                             </td>
                             <td class="text-center"><?= $row['status_kepegawaian'] ?></td>
-                            <td class="text-center"><?= $row['asn_padan_nik_valid'] ?></td>
+                            <td class="text-center"><?= "" //$row['asn_padan_nik_valid'] 
+                                                    ?></td>
                             <td class="khusus"><?= ($row['asn_vld_nama_siak'] == 0) ? "*" : "" ?></td>
                             <td class="khusus"><?= ($row['asn_vld_jenis_kelamin_siak'] == 0) ? "*" : "" ?></td>
                             <td class="khusus"><?= ($row['asn_vld_tanggal_lahir_siak'] == 0) ? "*" : "" ?></td>
@@ -108,7 +109,6 @@ Ver-Val Data Master
 <?= $this->section('script') ?>
 <script src="<?= base_url() ?>public/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>public/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.11.3/dataRender/number.js"></script>
 <script>
     $(document).ready(function() {
         table11 = $('#rangkuman').DataTable({
@@ -181,6 +181,7 @@ Ver-Val Data Master
 
         $('#rangkuman').show();
         $('.ket').show();
+
     });
 </script>
 <?= $this->endSection() ?>

@@ -14,9 +14,17 @@ class Dasbor extends BaseController
 
     public function index()
     {
+        $request = \Config\Services::request();
+        $hal = $request->getVar('hal') ?? '1';
         $data_nasional = $this->M_bkn->get_data_wilayah('000000', 0);
         $data['data_nasional'] = $data_nasional;
-        return view('dasbor', $data);
+        $data['hal'] = $hal;
+        if ($hal == 1)
+            return view('dasbor', $data);
+        else if ($hal == 2)
+            return view('dasbor2', $data);
+        else
+            return view('dasbor3', $data);
     }
 
     public function tes()

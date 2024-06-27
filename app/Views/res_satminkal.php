@@ -3,7 +3,7 @@
 <?= $this->section('style') ?>
 <link rel="stylesheet" href="<?= base_url() ?>public/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="<?= base_url() ?>public/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="<?= base_url() ?>public/css/tabelverval.css">
+<link rel="stylesheet" href="<?= base_url() ?>public/css/tabelverval.css?v1.2">
 <style>
     table.dataTable>tfoot>tr>th,
     table.dataTable>tfoot>tr>td {
@@ -19,7 +19,7 @@ Ver-Val Data Master
     <div class="card">
         <h2>Residu Satminkal (NPSN)</h2>
 
-        <div class="breadcrumb">
+        <div id="breadcrumb">
             <?= $breadcrumb ?>
         </div>
 
@@ -95,7 +95,6 @@ Ver-Val Data Master
 <?= $this->section('script') ?>
 <script src="<?= base_url() ?>public/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>public/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.11.3/dataRender/number.js"></script>
 <script>
     $(document).ready(function() {
         table11 = $('#rangkuman').DataTable({

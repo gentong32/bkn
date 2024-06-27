@@ -3,11 +3,29 @@
 <?= $this->section('style') ?>
 <link rel="stylesheet" href="<?= base_url() ?>public/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="<?= base_url() ?>public/css/responsive.dataTables.min.css">
-<link rel="stylesheet" href="<?= base_url() ?>public/css/tabelverval.css">
+<link rel="stylesheet" href="<?= base_url() ?>public/css/tabelverval.css?v1.2">
 <style>
     table.dataTable>tfoot>tr>th,
     table.dataTable>tfoot>tr>td {
         padding-right: 5px;
+    }
+
+    .tbhal {
+        width: 120px;
+        height: 40px;
+        margin-right: 3px;
+        border: 0.5px solid gray;
+        cursor: pointer;
+    }
+
+    .tbaktif {
+        background-color: lightblue;
+        border: 1px solid #28BCF3;
+    }
+
+    .tbkontain {
+        display: flex;
+        margin-bottom: 25px;
     }
 </style>
 <?= $this->endSection() ?>
@@ -18,8 +36,36 @@ Ver-Val Data Master
 <div class="container">
     <div class="card">
         <h2>Residu Kepegawaian (NIP)</h2>
+        <div class="tbkontain">
+            <button id="tbpar1" class="tbhal" onclick="kedasbor(1)">Parameter 1</button>
+            <button id="tbpar2" class="tbhal" onclick="kedasbor(2)">Parameter 2</button>
+        </div>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            if (!urlParams.has('param')) {
+                const switchState = localStorage.getItem('parameterSwitch') || '1';
+                urlParams.set('param', switchState);
+                window.location.search = urlParams.toString();
+            }
 
-        <div class="breadcrumb">
+            function initializeSwitch() {
+                const switchState = localStorage.getItem("parameterSwitch");
+                const tbpar1 = document.getElementById("tbpar1");
+                const tbpar2 = document.getElementById("tbpar2");
+
+                if (switchState === "2") {
+                    tbpar2.classList.add('tbaktif');
+                    tbpar1.classList.remove('tbaktif');
+                } else {
+                    tbpar1.classList.add('tbaktif');
+                    tbpar2.classList.remove('tbaktif');
+                }
+            }
+
+            initializeSwitch();
+        </script>
+
+        <div id="breadcrumb">
             <?= $breadcrumb ?>
         </div>
 
@@ -61,12 +107,24 @@ Ver-Val Data Master
                             <td style="text-align: left !important;"><?= $row['wilayah'] ?></td>
                             <td style="text-align: center !important;"><?= ($row['status_sekolah'] == 1 ? "Negeri" : "Swasta") ?></td>
                             <td><?= $row['asn'] ?></td>
-                            <td><?= $row['asn'] - $row['asn_vld_bkn'] ?></td>
+                            <?php if ($param == 1) : ?>
+                                <td><?= $row['asn'] - $row['asn_vld_bkn'] ?></td>
+                            <?php elseif ($param == 2) : ?>
+                                <td><?= $row['asn'] - $row['asn_vld_2_bkn'] ?></td>
+                            <?php endif ?>
                             <td><?= $row['asn'] - $row['asn_vld_nik_bkn'] ?></td>
-                            <td><?= $row['asn'] - $row['asn_vld_nama_bkn'] ?></td>
+                            <?php if ($param == 1) : ?>
+                                <td><?= $row['asn'] - $row['asn_vld_nama_bkn'] ?></td>
+                            <?php elseif ($param == 2) : ?>
+                                <td><?= $row['asn'] - $row['asn_vld_nama_2_bkn'] ?></td>
+                            <?php endif ?>
                             <td><?= $row['asn'] - $row['asn_vld_jenis_kelamin_bkn'] ?></td>
                             <td><?= $row['asn'] - $row['asn_vld_tanggal_lahir_bkn'] ?></td>
-                            <td><?= $row['asn'] - $row['asn_vld_tempat_lahir_bkn'] ?></td>
+                            <?php if ($param == 1) : ?>
+                                <td><?= $row['asn'] - $row['asn_vld_tempat_lahir_bkn'] ?></td>
+                            <?php elseif ($param == 2) : ?>
+                                <td><?= $row['asn'] - $row['asn_vld_tempat_lahir_2_bkn'] ?></td>
+                            <?php endif ?>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -95,8 +153,24 @@ Ver-Val Data Master
 <?= $this->section('script') ?>
 <script src="<?= base_url() ?>public/js/jquery.dataTables.min.js"></script>
 <script src="<?= base_url() ?>public/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/plug-ins/1.11.3/dataRender/number.js"></script>
 <script>
+    function updateLinks() {
+        const tbpar2 = document.getElementById('tbpar2');
+        const parameter = tbpar2.classList.contains('tbaktif') ? '2' : '1';
+        const links = document.querySelectorAll('table a, #breadcrumb a');
+
+        links.forEach(link => {
+            const url = new URL(link.href);
+            url.searchParams.set('param', parameter);
+            link.href = url.toString();
+        });
+
+        const breadcrumbDiv = document.getElementById('breadcrumb');
+        breadcrumbDiv.innerHTML = breadcrumbDiv.innerHTML.replace(/{param}/g, parameter);
+    }
+
+    updateLinks();
+
     $(document).ready(function() {
         table11 = $('#rangkuman').DataTable({
             "language": {
@@ -167,6 +241,26 @@ Ver-Val Data Master
         });
 
         $('#rangkuman').show();
+
     });
+
+    function updateUrlParameter(parameter) {
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set('param', parameter);
+        window.history.replaceState({}, '', currentUrl);
+        window.location.reload();
+    }
+
+    function kedasbor(idx) {
+        if (idx === "2") {
+            tbpar2.classList.add('tbaktif');
+            tbpar1.classList.remove('tbaktif');
+        } else {
+            tbpar1.classList.add('tbaktif');
+            tbpar2.classList.remove('tbaktif');
+        }
+        localStorage.setItem('parameterSwitch', idx);
+        updateUrlParameter(idx);
+    };
 </script>
 <?= $this->endSection() ?>

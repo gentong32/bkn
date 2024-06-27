@@ -26,13 +26,25 @@
 
     .infokohort {
         background-color: white;
-        width: 360px;
+        width: 120px;
         text-align: left;
         position: absolute;
-        margin-top: 40px;
+        margin-top: 115px;
         top: 0;
-        margin-left: 940px;
-        border: 1px solid gray;
+        margin-left: 700px;
+        border: 0px solid gray;
+        padding: 10px;
+    }
+
+    .infokohort2 {
+        background-color: white;
+        width: 120px;
+        text-align: left;
+        position: absolute;
+        margin-top: 260px;
+        top: 0;
+        margin-left: 700px;
+        border: 0px solid gray;
         padding: 10px;
     }
 
@@ -91,88 +103,28 @@
         left: 208px;
     }
 
-    #kh_valid_nik {
-        background-color: #97E151;
-        top: 170px;
-        left: 385px;
-    }
-
-    #kh_valid_nip {
-        background-color: #97E151;
-        top: 250px;
-        left: 385px;
-    }
-
-    #kh_valid_nuptk {
-        background-color: #97E151;
-        top: 330px;
-        left: 385px;
-    }
-
-    #kh_valid_satminkal {
-        background-color: #97E151;
-        top: 410px;
-        left: 385px;
-    }
-
-    #kh_residu_nik {
-        background-color: #FC7D63;
-        top: 200px;
-        left: 560px;
-    }
-
-    #kh_persen_residu_nik {
-        background-color: #FC7D63;
-        top: 205px;
-        left: 720px;
-    }
-
-    #kh_residu_nip {
-        background-color: #FC7D63;
-        top: 280px;
-        left: 560px;
-    }
-
-    #kh_persen_residu_nip {
-        background-color: #FC7D63;
-        top: 285px;
-        left: 720px;
-    }
-
-    #kh_residu_nuptk {
-        background-color: #FC7D63;
-        top: 360px;
-        left: 560px;
-    }
-
-    #kh_persen_residu_nuptk {
-        background-color: #FC7D63;
-        top: 365px;
-        left: 720px;
-    }
-
-    #kh_residu_satminkal {
-        background-color: #FC7D63;
-        top: 440px;
-        left: 560px;
-    }
-
-    #kh_persen_residu_satminkal {
-        background-color: #FC7D63;
-        top: 445px;
-        left: 720px;
-    }
-
     #kh_valid_ptk {
         background-color: #79C04B;
-        top: 60px;
-        left: 730px;
+        top: 120px;
+        left: 490px;
     }
 
     #kh_persen_valid_ptk {
         background-color: #79C04B;
-        top: 65px;
-        left: 880px;
+        top: 125px;
+        left: 640px;
+    }
+
+    #kh_valid_ptk2 {
+        background-color: #79C04B;
+        top: 265px;
+        left: 490px;
+    }
+
+    #kh_persen_valid_ptk2 {
+        background-color: #79C04B;
+        top: 270px;
+        left: 640px;
     }
 
 
@@ -224,7 +176,7 @@
 <?php $nama_bulan = array('Januari', 'Pebruari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'Nopember', 'Desember'); ?>
 
 <?= $this->section('konten') ?>
-DASBOR
+DASBOR 2
 <div class="container">
     <div class="card">
         <div class="tbkontain">
@@ -244,55 +196,20 @@ DASBOR
                     <b>Total PTK ASN</b>
                     <div><?= number_format($data_nasional['asn'], 0, ',', '.') ?></div>
                 </div>
-                <div class='bagan' id='kh_valid_nik'>
-                    <b>Valid NIK</b>
-                    <div><?= number_format(($data_nasional['asn_vld_siak']), 0, ',', '.') ?></div>
-                </div>
-                <div class='bagan' id='kh_valid_nip'>
-                    <b>Valid NIP</b>
-                    <div><?= number_format(($data_nasional['asn_vld_bkn']), 0, ',', '.') ?></div>
-                </div>
-                <div class='bagan' id='kh_valid_nuptk'>
-                    <b>Valid NUPTK</b>
-                    <div><?= number_format(($data_nasional['asn_padan_nik_valid_nuptk']), 0, ',', '.') ?></div>
-                </div>
-                <div class='bagan' id='kh_valid_satminkal'>
-                    <b>Valid Satminkal</b>
-                    <div><?= number_format(($data_nasional['satminkal_valid']), 0, ',', '.') ?></div>
-                </div>
-                <div class='bagan' id='kh_residu_nik'>
-                    <b>Residu NIK</b>
-                    <div><?= number_format(($data_nasional['asn'] - $data_nasional['asn_vld_siak']), 0, ',', '.') ?></div>
-                </div>
-                <div class='baganbulat' id='kh_persen_residu_nik'>
-                    <div><?= number_format((($data_nasional['asn'] - $data_nasional['asn_vld_siak']) * 100 / $data_nasional['asn']), 2, ',', '.') ?>%</div>
-                </div>
-                <div class='bagan' id='kh_residu_nip'>
-                    <b>Residu NIP</b>
-                    <div><?= number_format(($data_nasional['asn'] - $data_nasional['asn_vld_bkn']), 0, ',', '.') ?></div>
-                </div>
-                <div class='baganbulat' id='kh_persen_residu_nip'>
-                    <div><?= number_format((($data_nasional['asn'] - $data_nasional['asn_vld_bkn']) * 100 / $data_nasional['asn']), 2, ',', '.') ?>%</div>
-                </div>
-                <div class='bagan' id='kh_residu_nuptk'>
-                    <b>Residu NUPTK</b>
-                    <div><?= number_format(($data_nasional['asn'] - $data_nasional['asn_padan_nik_valid_nuptk']), 0, ',', '.') ?></div>
-                </div>
-                <div class='baganbulat' id='kh_persen_residu_nuptk'>
-                    <div><?= number_format((($data_nasional['asn'] - $data_nasional['asn_padan_nik_valid_nuptk']) * 100 / $data_nasional['asn']), 2, ',', '.') ?>%</div>
-                </div>
-                <div class='bagan' id='kh_residu_satminkal'>
-                    <b>Residu Satminkal</b>
-                    <div><?= number_format(($data_nasional['asn'] - $data_nasional['satminkal_valid']), 0, ',', '.') ?></div>
-                </div>
-                <div class='baganbulat' id='kh_persen_residu_satminkal'>
-                    <div><?= number_format((($data_nasional['asn'] - $data_nasional['satminkal_valid']) * 100 / $data_nasional['asn']), 2, ',', '.') ?>%</div>
-                </div>
+
                 <div class='bagan' id='kh_valid_ptk'>
                     <b>Valid PTK ASN</b>
                     <div><?= number_format($data_nasional['valid_ptk'], 0, ',', '.') ?></div>
                 </div>
                 <div class='baganbulat' id='kh_persen_valid_ptk'>
+                    <div><?= number_format((($data_nasional['valid_ptk']) * 100 / $data_nasional['asn']), 2, ',', '.') ?>%</div>
+                </div>
+
+                <div class='bagan' id='kh_valid_ptk2'>
+                    <b>Valid PTK ASN</b>
+                    <div><?= number_format($data_nasional['valid_ptk'], 0, ',', '.') ?></div>
+                </div>
+                <div class='baganbulat' id='kh_persen_valid_ptk2'>
                     <div><?= number_format((($data_nasional['valid_ptk']) * 100 / $data_nasional['asn']), 2, ',', '.') ?>%</div>
                 </div>
 
@@ -308,51 +225,17 @@ DASBOR
                     <line x1="170" y1="90" x2="275" y2="90" stroke="black" stroke-width="1" />
                     <line x1="275" y1="90" x2="275" y2="113" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
 
-                    <line x1="275" y1="190" x2="275" y2="455" stroke="black" stroke-width="1" />
-                    <line x1="275" y1="215" x2="375" y2="215" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
-                    <line x1="275" y1="295" x2="375" y2="295" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
-                    <line x1="275" y1="375" x2="375" y2="375" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
-                    <line x1="275" y1="455" x2="375" y2="455" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
+                    <line x1="275" y1="190" x2="275" y2="300" stroke="black" stroke-width="1" />
+                    <line x1="275" y1="300" x2="475" y2="300" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
+                    <line x1="349" y1="155" x2="475" y2="155" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
 
-                    <line x1="526" y1="195" x2="800" y2="195" stroke="black" stroke-width="1" />
-                    <line x1="526" y1="275" x2="800" y2="275" stroke="black" stroke-width="1" />
-                    <line x1="526" y1="355" x2="800" y2="355" stroke="black" stroke-width="1" />
-                    <line x1="526" y1="435" x2="800" y2="435" stroke="black" stroke-width="1" />
-                    <line x1="800" y1="435" x2="800" y2="137" stroke="black" stroke-width="1" marker-end="url(#arrowhead)" />
-
-                    <line x1="526" y1="225" x2="550" y2="225" stroke="red" stroke-width="1" marker-end="url(#arrowhead2)" />
-                    <line x1="526" y1="305" x2="550" y2="305" stroke="red" stroke-width="1" marker-end="url(#arrowhead2)" />
-                    <line x1="526" y1="385" x2="550" y2="385" stroke="red" stroke-width="1" marker-end="url(#arrowhead2)" />
-                    <line x1="526" y1="465" x2="550" y2="465" stroke="red" stroke-width="1" marker-end="url(#arrowhead2)" />
                 </svg>
             </div>
             <div class="infokohort">
-                <b>Parameter 1</b><br><br>
-                Data yang dipadankan bersumber dari DAPODIK<br><br>
-                A. Data Kependudukan<br>
-                <span style="margin-left:18px">Validasi NIK (Acuan Dukcapil Pusat)</span>
-                <ol style="margin-top:0; margin-left:-5px">
-                    <li>NIK <i>(Padan 100%)</i></li>
-                    <li>Nama <i>(Padan Min. 95%)</i></li>
-                    <li>Jenis Kelamin <i>(Padan 100%)</i></li>
-                    <li>Tanggal Lahir <i>(Padan 100%)</i></li>
-                    <li>Tempat Lahir <i>(Padan Min. 95%)</i></li>
-                    <li>Nama Ibu Kandung <i>(Padan Min. 95%)</i></li>
-                </ol>
-
-                <div style="margin-top: 20px;">B. Data Kepegawaian<br>
-                    <span style="margin-left:18px">- Validasi NIP (Acuan BKN)</span>
-                    <ol style="margin-top:0; margin-left:2px;margin-bottom:0px">
-                        <li>NIP <i>(Padan 100%)</i></li>
-                        <li>Nama <i>(Padan Min. 95%)</i></li>
-                        <li>Jenis Kelamin <i>(Padan 100%)</i></li>
-                        <li>Tanggal Lahir <i>(Padan 100%)</i></li>
-                        <li>Tempat Lahir <i>(Padan Min. 95%)</i></li>
-                    </ol>
-                    <span style="margin-left:18px;">- Validasi NIK (Acuan Dukcapil Pusat) <i>(Padan 100%)</i></span>
-                </div>
-                <div style="margin-top:20px">C. Validasi NUPTK (Acuan Data Induk Pendidikan)</div>
-                <div style="margin-top:16px">D. Validasi Satminkal (Acuan BKN)</div>
+                Parameter 1
+            </div>
+            <div class="infokohort2">
+                Parameter 2
             </div>
         </div>
     </div>

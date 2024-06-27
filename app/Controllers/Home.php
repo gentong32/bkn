@@ -31,6 +31,7 @@ class Home extends BaseController
         $wilayah = $request->getVar('wilayah') ?? '000000';
         $npsn = $request->getVar('npsn') ?? '';
         $level = $request->getVar('level') ?? '0';
+        $param = $request->getVar('param') ?? '1';
 
         $data = array();
         if ($level == 3)
@@ -45,19 +46,19 @@ class Home extends BaseController
 
         if ($level == 1) {
             $wilayah_level1 = $this->M_bkn->get_nama_wilayah($wilayah, 1);
-            $breadcrumb = "<a href='" . base_url('data_ptk') . "'>Nasional</a> > " . $wilayah_level1->wilayah;
+            $breadcrumb = "<a href='" . base_url('data_ptk') . "?param=" . $param . "'>Nasional</a> > " . $wilayah_level1->wilayah;
         } else if ($level == 2) {
             $wilayah_level1 = $this->M_bkn->get_nama_wilayah($wilayah, 1);
             $wilayah_level2 = $this->M_bkn->get_nama_wilayah($wilayah, 2);
             $mstkode = substr($wilayah, 0, 2) . "0000";
-            $breadcrumb = "<a href='" . base_url('data_ptk') . "'>Nasional</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode . '&level=1') . "'>" . $wilayah_level1->wilayah . "</a> > " . $wilayah_level2->wilayah;
+            $breadcrumb = "<a href='" . base_url('data_ptk') . "?param=" . $param . "'>Nasional</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode . '&level=1') . "&param=" . $param . "'>" . $wilayah_level1->wilayah . "</a> > " . $wilayah_level2->wilayah;
         } else if ($level == 3) {
             $wilayah_level1 = $this->M_bkn->get_nama_wilayah($wilayah, 1);
             $wilayah_level2 = $this->M_bkn->get_nama_wilayah($wilayah, 2);
             $wilayah_level3 = $this->M_bkn->get_nama_wilayah($wilayah, 3);
             $mstkode = substr($wilayah, 0, 2) . "0000";
             $mstkode2 = substr($wilayah, 0, 4) . "00";
-            $breadcrumb = "<a href='" . base_url('data_ptk') . "'>Nasional</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode . '&level=1') . "'>" . $wilayah_level1->wilayah . "</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode2 . '&level=2') . "'>" . $wilayah_level2->wilayah . "</a> > " . $wilayah_level3->wilayah;
+            $breadcrumb = "<a href='" . base_url('data_ptk') . "?param=" . $param . "'>Nasional</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode . '&level=1') . "&param=" . $param . "'>" . $wilayah_level1->wilayah . "</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode2 . '&level=2') . "&param=" . $param . "'>" . $wilayah_level2->wilayah . "</a> > " . $wilayah_level3->wilayah;
         } else if ($level == 4) {
             $wilayah_level1 = $this->M_bkn->get_nama_wilayah($wilayah, 1);
             $wilayah_level2 = $this->M_bkn->get_nama_wilayah($wilayah, 2);
@@ -65,13 +66,14 @@ class Home extends BaseController
             $mstkode = substr($wilayah, 0, 2) . "0000";
             $mstkode2 = substr($wilayah, 0, 4) . "00";
             $mstkode3 = substr($wilayah, 0, 6);
-            $breadcrumb = "<a href='" . base_url('data_ptk') . "'>Nasional</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode . '&level=1') . "'>" . $wilayah_level1->wilayah . "</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode2 . '&level=2') . "'>" . $wilayah_level2->wilayah .
-                "</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode3 . '&level=3') . "'>" . $wilayah_level3->wilayah . "</a> > " . $data_wilayah[0]['sekolah'];
+            $breadcrumb = "<a href='" . base_url('data_ptk') . "?param=" . $param . "'>Nasional</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode . '&level=1') . "&param=" . $param . "'>" . $wilayah_level1->wilayah . "</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode2 . '&level=2') . "&param=" . $param . "'>" . $wilayah_level2->wilayah .
+                "</a> > <a href='" . base_url('data_ptk?wilayah=' . $mstkode3 . '&level=3') . "&param=" . $param . "'>" . $wilayah_level3->wilayah . "</a> > " . $data_wilayah[0]['sekolah'];
         }
 
         $data['wilayah'] = $wilayah;
         $data['npsn'] = $npsn;
         $data['level'] = $level;
+        $data['param'] = $param;
         $data['data_wilayah'] = $data_wilayah;
         $data['breadcrumb'] = $breadcrumb;
 
@@ -110,6 +112,6 @@ class Home extends BaseController
 
     private function formatValidity($value)
     {
-        return ($value == 1) ? "✔" : "<span style='color:red'>✘</span>";
+        return ($value == 1) ? "✔" : "✘";
     }
 }
